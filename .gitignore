@@ -1,3 +1,4 @@
 docker-compose.yml
 mongodata/
 mycode/
+mycode/node_modules/
