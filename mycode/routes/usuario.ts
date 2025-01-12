@@ -249,13 +249,13 @@ userRoutes.get('/variables',[verificaToken],(req:Request,resp:Response)=>{
      try {
         const data={
             ok:true,
-            api_port:'3000',
-            backend_host:'http://127.0.0.1:3000',
-            mongo_host: '127.0.0.1',
-            mqtt_host: '127.0.0.1',
-            mqtt_port: 8083,
-            mqtt_SSL_port: 'ws://',
-            axios_base_url:'http://127.0.0.1:3000/api'
+            api_port:process.env.API_PORT,
+            backend_host:process.env.BACKEND_HOST,
+            mongo_host:process.env.MONGO_HOST,
+            mqtt_host: process.env.MQTT_HOST,
+            mqtt_port: process.env.MQTT_PORT ,
+            mqtt_SSL_port: process.env.MQTT_SSL_PREFIX,
+            axios_base_url:process.env.AXIOS_BASE_URL
 
         };
         const data_str=JSON.stringify(data);
