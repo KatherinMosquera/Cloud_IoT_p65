@@ -22,7 +22,7 @@ services:
     volumes:
       - ./mongodata:/data/db
     ports:
-      - 27018:27017
+      - ${MONGO_EXT_PORT}:27017
 
 
 
@@ -47,7 +47,7 @@ services:
     links:
       - mongo
     extra_hosts:
-      - "localhost:192.168.18.7"
+      - "localhost:192.168.1.9"
     environment: 
       
       EMQX_NAME: redSensores-gl-p65
@@ -56,10 +56,10 @@ services:
       TZ: "America/Bogota"
 
       # DEFAULT DASH PASS
-      EMQX_DASHBOARD__DEFAULT_USER__PASSWORD: "emqxdashpass"
+      EMQX_DASHBOARD__DEFAULT_USER__PASSWORD: "${EMOX_DEFAULT_USER_PASSWORD}"
       #DEFAULT APP SECRET
       
-      EMQX_MANAGEMENT__DEFAULT_APPLICATION__SECRET: "emqxsecret"
+      EMQX_MANAGEMENT__DEFAULT_APPLICATION__SECRET: "${EMOX_DEFAULT_APPLICATION_SECRET}"
 
       EMQX_ALLOW_ANONYMOUS: "false"
       EMQX_NOMATCH: "deny"
@@ -72,8 +72,8 @@ services:
       EMQX_AUTH__MONGO__SERVER: "mongo:27017"
       EMQX_AUTH__MONGO__POOL: 8
 
-      EMQX_AUTH__MONGO__LOGIN: "devuser"
-      EMQX_AUTH__MONGO__PASSWORD: "devpassword"
+      EMQX_AUTH__MONGO__LOGIN: "${MONGO_USERNAME}"
+      EMQX_AUTH__MONGO__PASSWORD: "${MONGO_PASSWORD}"
       EMQX_AUTH__MONGO__AUTH_SOURCE: admin
 
       EMQX_AUTH__MONGO__DATABASE: "IoT_p65"
